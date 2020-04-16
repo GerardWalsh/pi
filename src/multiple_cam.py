@@ -44,6 +44,7 @@ while True:
 
     timestamp = datetime.datetime.now()
     ts = timestamp.strftime("%A %d %B %Y %I:%M:%S%p")
+    tss = timestamp.strftime('%H-%M-%S-%f')
 
     # # loop over the frames a second time
     # for (frame, name) in zip(frames, ("Webcam", "Picamera")):
@@ -54,6 +55,9 @@ while True:
 
     display_img(p_frame, 'Picam', ts)
     display_img(w_frame, 'Webcam', ts)
+
+    cv2.imwrite('pi/{}'.format(tss), p_frame)
+    cv2.imwrite('web/{}'.format(tss), w_frame)
 
     # check to see if a key was pressed
     key = cv2.waitKey(1) & 0xFF
@@ -66,9 +70,3 @@ print("[INFO] cleaning up...")
 cv2.destroyAllWindows()
 webcam.stop()
 picam.stop()
-
-
-out = cv2.VideoWriter('pi.avi', cv2.VideoWriter_fourcc(*'MJPG'), 30, (640, 480))
-for i in range(len(pi_frames)):
-    out.write(pi_frames[i])
-out.release()
