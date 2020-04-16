@@ -14,11 +14,18 @@ webcam = VideoStream(src=0).start()
 picam = VideoStream(usePiCamera=True).start()
 time.sleep(2.0)
 
+def display_img(frame, name, ts):
+     cv2.putText(frame, ts, (10, frame.shape[0] - 10), 
+        cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 0, 255), 1)
+    cv2.imshow(name, frame)
+
+
 # loop over frames from the video streams
 while True:
 	# initialize the list of frames that have been processed
 	pi_frames = []
     webcam_frames = []
+
 	# loop over the frames and their respective motion detectors
     p_frame = picam.read()
     w_frame = webcam.read() 
@@ -43,15 +50,8 @@ while True:
     #         cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 0, 255), 1)
     #     cv2.imshow(name, frame)
 
-
-    cv2.putText(p_frame, ts, (10, frame.shape[0] - 10),
-        cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 0, 255), 1)
-    cv2.imshow('Picam', p_frame)
-
-    cv2.putText(w_frame, ts, (10, frame.shape[0] - 10),
-        cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 0, 255), 1)
-    cv2.imshow('Webcam', w_frame)
-    
+    display_img(p_frame, 'Picam', ts)
+    display_img(w_frame, 'Webcam', ts)
 
     # check to see if a key was pressed
     key = cv2.waitKey(1) & 0xFF
