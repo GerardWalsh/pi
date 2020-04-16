@@ -17,25 +17,41 @@ time.sleep(2.0)
 # loop over frames from the video streams
 while True:
 	# initialize the list of frames that have been processed
-	frames = []
+	pi_frames = []
+    webcam_frames = []
 	# loop over the frames and their respective motion detectors
-	for picam, webcam in webcam, picam:
-		# read the next frame from the video stream and resize
-		# it to have a maximum width of 400 pixels
-		frame = picam.read()
-		frame = imutils.resize(frame, width=400)
+    p_frame = picam.read()
+    w_frame = webcam.read() 
 
-    # update the frames list
-    frames.append(frame)
+	# for picam, webcam in webcam, picam:
+	# 	# read the next frame from the video stream and resize
+	# 	# it to have a maximum width of 400 pixels
+	# 	frame = picam.read()
+	# 	frame = imutils.resize(frame, width=400)
+
+    # update the frame lists
+    pi_frames.append(p_frame)
+    webcam_frames.append(w_frame)\
+
     timestamp = datetime.datetime.now()
     ts = timestamp.strftime("%A %d %B %Y %I:%M:%S%p")
 
-    # loop over the frames a second time
-    for (frame, name) in zip(frames, ("Webcam", "Picamera")):
-        # draw the timestamp on the frame and display it
-        cv2.putText(frame, ts, (10, frame.shape[0] - 10),
-            cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 0, 255), 1)
-        cv2.imshow(name, frame)
+    # # loop over the frames a second time
+    # for (frame, name) in zip(frames, ("Webcam", "Picamera")):
+    #     # draw the timestamp on the frame and display it
+    #     cv2.putText(frame, ts, (10, frame.shape[0] - 10),
+    #         cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 0, 255), 1)
+    #     cv2.imshow(name, frame)
+
+
+    cv2.putText(p_frame, ts, (10, frame.shape[0] - 10),
+        cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 0, 255), 1)
+    cv2.imshow('Picam', p_frame)
+
+    cv2.putText(w_frame, ts, (10, frame.shape[0] - 10),
+        cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 0, 255), 1)
+    cv2.imshow('Webcam', w_frame)
+    
 
     # check to see if a key was pressed
     key = cv2.waitKey(1) & 0xFF
