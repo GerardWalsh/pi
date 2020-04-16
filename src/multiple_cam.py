@@ -11,13 +11,13 @@ import cv2
 # initialize the video streams and allow them to warmup
 print("[INFO] starting cameras...")
 webcam = VideoStream(src=0).start()
-picam = VideoStream(usePiCamera=True).start()
+picam = VideoStream(usePiCamera=True, resolution=(640, 480)).start()
 time.sleep(2.0)
 
 def display_img(frame, name, ts):
      cv2.putText(frame, ts, (10, frame.shape[0] - 10), 
         cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 0, 255), 1)
-    cv2.imshow(name, frame)
+     cv2.imshow(name, frame)
 
 
 # loop over frames from the video streams
@@ -30,7 +30,7 @@ while True:
 	# loop over the frames and their respective motion detectors
     p_frame = picam.read()
     w_frame = webcam.read() 
-    w_frame = imutils.resize(w_frame, width=400)
+    # w_frame = imutils.resize(w_frame, width=400)
 
 	# for picam, webcam in webcam, picam:
 	# 	# read the next frame from the video stream and resize
