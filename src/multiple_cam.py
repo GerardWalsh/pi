@@ -56,8 +56,8 @@ while True:
     display_img(p_frame, 'Picam', ts)
     display_img(w_frame, 'Webcam', ts)
 
-    cv2.imwrite('pi/{}.jpg'.format(tss), p_frame)
-    cv2.imwrite('web/{}.jpg'.format(tss), w_frame)
+    cv2.imwrite('pi/f1_{}.jpg'.format(tss), p_frame)
+    cv2.imwrite('web/f2_{}.jpg'.format(tss), w_frame)
 
     # check to see if a key was pressed
     key = cv2.waitKey(1) & 0xFF
