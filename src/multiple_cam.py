@@ -19,12 +19,12 @@ while True:
 	# initialize the list of frames that have been processed
 	frames = []
 	# loop over the frames and their respective motion detectors
-	for (stream) in zip((webcam, picam)):
+	for picam, webcam in webcam, picam:
 		# read the next frame from the video stream and resize
 		# it to have a maximum width of 400 pixels
-		frame = stream.read()
+		frame = picam.read()
 		frame = imutils.resize(frame, width=400)
-        
+
     # update the frames list
     frames.append(frame)
     timestamp = datetime.datetime.now()
