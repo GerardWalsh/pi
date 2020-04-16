@@ -24,7 +24,7 @@ def display_img(frame, name, ts):
 while True:
 	# initialize the list of frames that have been processed
 
-	pi_frames = []
+    pi_frames = []
     webcam_frames = []
 
 	# loop over the frames and their respective motion detectors
