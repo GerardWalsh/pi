@@ -36,25 +36,26 @@ while True:
 		# 	frames.append(frame)
 		# 	continue
 
-        # update the frames list
-		frames.append(frame)
-        timestamp = datetime.datetime.now()
-	    ts = timestamp.strftime("%A %d %B %Y %I:%M:%S%p")
+    # update the frames list
+    frames.append(frame)
+    timestamp = datetime.datetime.now()
+    ts = timestamp.strftime("%A %d %B %Y %I:%M:%S%p")
 
-        	# loop over the frames a second time
-        for (frame, name) in zip(frames, ("Webcam", "Picamera")):
-            # draw the timestamp on the frame and display it
-            cv2.putText(frame, ts, (10, frame.shape[0] - 10),
-                cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 0, 255), 1)
-            cv2.imshow(name, frame)
+    # loop over the frames a second time
+    for (frame, name) in zip(frames, ("Webcam", "Picamera")):
+        # draw the timestamp on the frame and display it
+        cv2.putText(frame, ts, (10, frame.shape[0] - 10),
+            cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 0, 255), 1)
+        cv2.imshow(name, frame)
 
-        	# check to see if a key was pressed
-        key = cv2.waitKey(1) & 0xFF
-        # if the `q` key was pressed, break from the loop
-        if key == ord("q"):
-            break
-    # do a bit of cleanup
-    print("[INFO] cleaning up...")
-    cv2.destroyAllWindows()
-    webcam.stop()
-    picam.stop()
+    # check to see if a key was pressed
+    key = cv2.waitKey(1) & 0xFF
+    # if the `q` key was pressed, break from the loop
+    if key == ord("q"):
+        break
+
+# do a bit of cleanup
+print("[INFO] cleaning up...")
+cv2.destroyAllWindows()
+webcam.stop()
+picam.stop()
