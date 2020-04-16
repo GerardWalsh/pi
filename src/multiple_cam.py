@@ -66,3 +66,9 @@ print("[INFO] cleaning up...")
 cv2.destroyAllWindows()
 webcam.stop()
 picam.stop()
+
+
+out = cv2.VideoWriter('pi.avi', cv2.VideoWriter_fourcc(*'MJPG'), 30, (640, 480))
+for i in range(len(pi_frames)):
+    out.write(pi_frames[i])
+out.release()
