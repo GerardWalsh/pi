@@ -24,18 +24,7 @@ while True:
 		# it to have a maximum width of 400 pixels
 		frame = stream.read()
 		frame = imutils.resize(frame, width=400)
-		# convert the frame to grayscale, blur it slightly, update
-		# the motion detector
-
-		# gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-		# gray = cv2.GaussianBlur(gray, (21, 21), 0)
-		# locs = motion.update(gray)
-		# # we should allow the motion detector to "run" for a bit
-		# # and accumulate a set of frames to form a nice average
-		# if total < 32:
-		# 	frames.append(frame)
-		# 	continue
-
+        
     # update the frames list
     frames.append(frame)
     timestamp = datetime.datetime.now()
