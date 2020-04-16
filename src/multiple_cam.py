@@ -23,12 +23,14 @@ def display_img(frame, name, ts):
 # loop over frames from the video streams
 while True:
 	# initialize the list of frames that have been processed
+
 	pi_frames = []
     webcam_frames = []
 
 	# loop over the frames and their respective motion detectors
     p_frame = picam.read()
     w_frame = webcam.read() 
+    w_frame = imutils.resize(w_frame, width=400)
 
 	# for picam, webcam in webcam, picam:
 	# 	# read the next frame from the video stream and resize
